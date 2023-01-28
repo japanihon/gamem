@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 
 const getRandomPage = () => Math.round(Math.random() * (10 - 1) + 1);
@@ -23,6 +24,7 @@ const useGetImages = gameOptions => {
         fetch(buildUrl(), {
             method: "GET",
             headers: {
+                Accept: "application/json",
                 Authorization: process.env.REACT_APP_AUTH_KEY,
             },
         })
@@ -33,7 +35,7 @@ const useGetImages = gameOptions => {
     useEffect(() => {
         if (!gameOptions) return;
         fetchPics();
-    }, [gameOptions]);
+    }, [fetchPics, gameOptions]);
 
     return images;
 };
